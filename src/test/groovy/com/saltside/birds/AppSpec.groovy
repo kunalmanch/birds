@@ -56,7 +56,7 @@ class AppSpec extends BaseSpec {
                         "\t\"name\": \"bluejay\",\n" +
                         "\t\"family\": \"Corvidae\",\n" +
                         "\t\"continents\": [\"asia\", \"europe\"\n" +
-                        "}"
+                        "}" //bad json
                 , ['name':'bluejay', 'family':'corvidae', 'continents':['asia', 'asia']] //duplicate continents
                 , ['name':'bluejay', 'family':'corvidae', 'continents':[]] //empty continents
         ]
