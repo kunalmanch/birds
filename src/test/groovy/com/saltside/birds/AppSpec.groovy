@@ -189,8 +189,8 @@ class AppSpec extends BaseSpec {
         def id = postResp.data.id
         restClient.delete( path: Path.Route.BIRDS + "/" + id)
 
-        when: "sending deleted request for a deleted id"
-        def response = restClient.get( path: Path.Route.BIRDS + "/" + id)
+        when: "sending delete request for a deleted id"
+        def response = restClient.delete( path: Path.Route.BIRDS + "/" + id)
 
         then: "request is not honored, expect 404"
         response == 404
