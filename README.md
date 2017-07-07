@@ -1,5 +1,5 @@
 ## Birds From SaltSide
-A rest service to play with bird.
+A rest service to play with birds.
 
 ### Problem
 Implement a simple rest service for **posting/deleting/getting** birds as per these [specifications](https://gist.github.com/sebdah/265f4255cb302c80abd4).
@@ -59,4 +59,5 @@ The application uses **Properties** files in resources folder for configuration 
 
 ### Future
 * Implement application logging(non-existent right now).
+* Some flexibility with endpoints, i.e. `GET /birds/` and `GET /birds` should both work. 
 * Add more tests.
