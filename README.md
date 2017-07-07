@@ -54,7 +54,7 @@ http://localhost:8080/birds
 ```  
 to test the application.
 
-### Change Run Configurations(port, db name, etc)? 
+#### Change Run Configurations(port, db name, etc)? 
 The application uses **Properties** files in resources folder for configuration details like *port*, *db name*, etc. So, if you want it to run with some different configuration(s), go ahead and update the **Properties** files.   
 
 
