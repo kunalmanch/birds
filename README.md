@@ -31,17 +31,17 @@ Implement a simple rest service for **posting/deleting/getting** birds as per th
 
 ### How To
 
-##### Run Tests?
+#### Run Tests?
 ```
 mvn clean test
 ```
 
-##### Build JAR?
+#### Build JAR?
 ```
 mvn clean install
 ``` 
  
-##### Run Application?
+#### Run Application?
 Make sure Mongodb is running and listening on port **27017**.
 ```
 java -cp birds-1.0.jar com.saltside.birds.App
@@ -54,7 +54,7 @@ http://localhost:8080/birds
 ```  
 to test the application.
 
-### Miscellaneous
+### Change Run Configurations(port, db name, etc)? 
 The application uses **Properties** files in resources folder for configuration details like *port*, *db name*, etc. So, if you want it to run with some different configuration(s), go ahead and update the **Properties** files.   
 
 
