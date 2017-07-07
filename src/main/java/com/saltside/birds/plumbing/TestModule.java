@@ -18,9 +18,7 @@ import java.util.Properties;
  */
 public class TestModule extends AbstractModule {
 
-    protected void configure() {
-
-    }
+    protected void configure() {}
 
     @Provides
     Datastore provideDataStore() throws IOException {

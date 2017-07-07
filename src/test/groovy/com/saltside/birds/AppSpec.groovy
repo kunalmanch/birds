@@ -1,42 +1,14 @@
 package com.saltside.birds
 
-import com.google.inject.Guice
-import com.saltside.birds.plumbing.TestModule
 import com.saltside.birds.utils.DateUtil
 import com.saltside.birds.utils.Path
-import groovyx.net.http.RESTClient
 import spock.lang.Specification
 import spock.lang.Unroll
-
-import static spark.Spark.*
 
 /**
  * Created by kunal on 7/6/2017.
  */
-class AppSpec extends Specification {
-
-    static def testPort = 4567
-    static RESTClient restClient = new RESTClient("http://localhost:" + testPort)
-
-    def setupSpec() {
-        restClient.handler.failure = { resp -> resp.status }
-        def injector = Guice.createInjector(new TestModule())
-        def birdController = injector.getInstance(BirdController.class)
-        App.start(birdController, testPort)
-    }
-
-    def cleanupSpec() {
-        stop()
-    }
-
-    def setup() {
-        // clear out data from db before each spec is run
-        // so that each spec test is self contained.
-        def response = restClient.get(path: Path.Route.BIRDS)
-        for (String id : response.data) {
-            restClient.delete(path: Path.Route.BIRDS + "/" + id)
-        }
-    }
+class AppSpec extends BaseSpec {
 
     def validateResponse(response, reqBody, status, visibility) {
         return response.status == status &&
@@ -112,7 +84,7 @@ class AppSpec extends Specification {
         restClient.post(path: Path.Route.BIRDS, body: postReqBody, requestContentType: 'application/json')
         def invalidId = "invalid_id"
 
-        when: "sending invalid id to server"
+        when: "sending invalid id to server for get"
         def response = restClient.get(path: Path.Route.BIRDS + "/" + invalidId)
 
         then: "request is not honored, expect 404"
@@ -124,12 +96,13 @@ class AppSpec extends Specification {
         def postReqBody = [
                 ['name':'bluejay', 'family':'corvidae', 'continents':['asia', 'europe']]
                 , ['name':'mockingbird', 'family':'mimidae', 'continents':['america', 'europe'], 'visible':true]
-                , ['name':'quail', 'family':'phasianidae', 'continents':['asia', 'europe'], 'visible':false]
+                , ['name':'quail', 'family':'phasianidae', 'continents':['asia', 'europe'], 'visible':true]
         ]
         def ids = []
+        int j = 0
         for (int i= 0; i < 3; i++) {
             def resp = restClient.post( path: Path.Route.BIRDS, body: postReqBody[i], requestContentType: 'application/json')
-            if (resp.data.visible) ids[i] = resp.data.id
+            if (resp.data.visible == true) ids[j++] = resp.data.id
         }
 
 

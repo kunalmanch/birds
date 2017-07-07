@@ -17,9 +17,7 @@ import java.util.Properties;
  */
 public class ProductionModule extends AbstractModule {
 
-    protected void configure() {
-
-    }
+    protected void configure() {}
 
     @Provides
     @Singleton

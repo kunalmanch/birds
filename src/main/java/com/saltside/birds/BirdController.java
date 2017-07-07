@@ -31,6 +31,7 @@ public class BirdController {
         try {
             Bird bird = birdDao.get(id);
             ret = JSONizer.birdToJSON(bird);
+            response.status(OK_200);
             response.type("application/json");
         } catch (InvalidDataException|IllegalArgumentException e) {
             response.status(NOT_FOUND_404);
@@ -41,6 +42,7 @@ public class BirdController {
     public Route getAllBirds = (Request request, Response response) -> {
         response.type("application/json");
         List<Bird> birds = birdDao.getAll();
+        response.status(OK_200);
         return JSONizer.birdsToJSONArray(birds);
     };
 
@@ -64,9 +66,9 @@ public class BirdController {
         String id = request.params(":id");
         try {
             birdDao.delete(id);
-            response.status(HttpStatus.OK_200);
+            response.status(OK_200);
         } catch (InvalidDataException|IllegalArgumentException e) {
-            response.status(HttpStatus.NOT_FOUND_404);
+            response.status(NOT_FOUND_404);
         }
         return "";
     };

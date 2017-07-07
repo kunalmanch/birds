@@ -24,7 +24,7 @@ public class JSONizer {
     public static String birdsToJSONArray(List<Bird> birds) {
         JsonArray birdIds = new JsonArray();
         for (Bird bird : birds) {
-            if (bird.isVisible()) continue;
+            if (!bird.isVisible()) continue;
             birdIds.add(bird.getId().toHexString());
         }
 

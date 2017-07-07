@@ -21,13 +21,13 @@ public class App {
     public static void start(BirdController birdController, int port) {
         port(port);
 
-        // Set up routes
+        // set up routes
         get(ONE_BIRD, birdController.getBird);
         get(BIRDS, birdController.getAllBirds);
         post(BIRDS, "application/json", birdController.addBird);
         delete(ONE_BIRD, birdController.deleteBird);
 
-
+        // handle bad route
         get(ANY, (req, res) -> {
             res.type("application/json");
             res.status(NOT_FOUND_404);
@@ -42,7 +42,6 @@ public class App {
 
         Properties properties = PropertiesUtil.get(Path.Properties.APP_PROPERTIES);
         start(birdController, Integer.parseInt(properties.getProperty("port")));
-
     }
 
 }

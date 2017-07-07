@@ -24,9 +24,7 @@
                 <executions>
                     <execution>
                         <goals>
-                            <goal>generateStubs</goal>
                             <goal>compile</goal>
-                            <goal>testGenerateStubs</goal>
                             <goal>testCompile</goal>
                         </goals>
                     </execution>
@@ -46,6 +44,9 @@
                 <configuration>
 
                     <useFile>false</useFile>
+                    <excludes>
+                        <exclude>**/BaseSpec.java</exclude>
+                    </excludes>
                     <includes>
                         <include>**/*Spec.java</include>
                     </includes>
