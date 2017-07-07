@@ -1,7 +1,7 @@
 ## Birds From SaltSide
 A rest service to play with bird.
 
-###Problem
+### Problem
 Implement a simple rest service for **posting/deleting/getting** birds as per these [specifications](https://gist.github.com/sebdah/265f4255cb302c80abd4).
 
 ### Solution
@@ -31,20 +31,20 @@ Implement a simple rest service for **posting/deleting/getting** birds as per th
 * **Java 8**
 * **Maven**
 
-#### How to Compile/Package?
+#### How to Test?
+```
+mvn clean test
+```
+
+#### How to Package?
 ```
 mvn clean install
 ``` 
  
 #### How to Run?
 ```
-java -cp birds-1.0-SNAPSHOT.jar com.saltside.birds.App
+java -cp birds-1.0.jar com.saltside.birds.App
 ```  
-
-#### How to Test?
-```
-mvn clean test
-```
 
 #### Miscellaneous
 The application uses **Properties** files for configuration details like *port*, *db name*, etc. So, if you want it to run with some different configuration(s), go ahead and update the **Properties** files.   

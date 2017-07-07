@@ -2,7 +2,6 @@ package com.saltside.birds
 
 import com.saltside.birds.utils.DateUtil
 import com.saltside.birds.utils.Path
-import spock.lang.Specification
 import spock.lang.Unroll
 
 /**

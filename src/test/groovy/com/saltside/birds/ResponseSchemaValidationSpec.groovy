@@ -4,11 +4,8 @@ import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
-import com.google.inject.Guice
-import com.saltside.birds.plumbing.TestModule
 import com.saltside.birds.utils.Path
 import com.saltside.birds.utils.SchemaValidator
-import groovyx.net.http.RESTClient
 import org.apache.http.HttpResponse
 import org.apache.http.client.HttpClient
 import org.apache.http.client.methods.HttpGet
@@ -16,12 +13,9 @@ import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.HttpClientBuilder
 import org.apache.http.util.EntityUtils
-import spock.lang.Specification
 
 import static com.saltside.birds.utils.Path.Schema.GET_RESPONSE_JSON_SCHEMA
-import static com.saltside.birds.utils.Path.Schema.POST_REQUEST_JSON_SCHEMA
 import static com.saltside.birds.utils.Path.Schema.POST_RESPONSE_JSON_SCHEMA
-import static spark.Spark.stop
 
 /**
  * Created by kunal on 7/5/2017.
@@ -31,7 +25,8 @@ class ResponseSchemaValidationSpec extends BaseSpec {
     static String requestBody = "{\n" +
             "\t\"name\": \"bluejay\",\n" +
             "\t\"family\": \"Corvidae\",\n" +
-            "\t\"continents\": [\"asia\", \"europe\"]\n" +
+            "\t\"continents\": [\"asia\", \"europe\"],\n" +
+            "\t\"visible\": true\n" +
             "}"
     static HttpClient httpClient = HttpClientBuilder.create().build()
 
@@ -75,6 +70,7 @@ class ResponseSchemaValidationSpec extends BaseSpec {
         JsonElement jsonElement = new Gson().fromJson(EntityUtils.toString(httpresponse.entity), JsonElement.class)
         jsonElement.isJsonArray() == true
         JsonArray jsonArray = jsonElement.asJsonArray
+        jsonArray.size() != 0
         jsonArray.get(0).asString == obj.get("id").asString
     }
 }

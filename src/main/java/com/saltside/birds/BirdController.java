@@ -3,7 +3,6 @@ package com.saltside.birds;
 import com.google.inject.Inject;
 import com.saltside.birds.utils.*;
 import com.sun.media.sound.InvalidDataException;
-import org.eclipse.jetty.http.HttpStatus;
 import spark.Request;
 import spark.Response;
 import spark.Route;
