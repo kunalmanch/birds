@@ -47,6 +47,11 @@ java -cp birds-1.0.jar com.saltside.birds.App
 ```  
 
 #### Miscellaneous
-The application uses **Properties** files for configuration details like *port*, *db name*, etc. So, if you want it to run with some different configuration(s), go ahead and update the **Properties** files.   
+The application uses **Properties** files in resources folder for configuration details like *port*, *db name*, etc. So, if you want it to run with some different configuration(s), go ahead and update the **Properties** files.   
 
 Default listening port is **8080** and Default Mongodb port is **27017**.
+
+
+### Future
+* Implement application logging(non-existent right now).
+* Add more tests.

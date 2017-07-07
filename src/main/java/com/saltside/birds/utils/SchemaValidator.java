@@ -3,6 +3,7 @@ package com.saltside.birds.utils;
 import org.everit.json.schema.Schema;
 import org.everit.json.schema.ValidationException;
 import org.everit.json.schema.loader.SchemaLoader;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -20,7 +21,7 @@ public class SchemaValidator {
             JSONObject rawSchema = new JSONObject(new JSONTokener(inputStream));
             Schema schema = SchemaLoader.load(rawSchema);
             schema.validate(new JSONObject(json));
-        } catch (ValidationException e) {
+        } catch (ValidationException|JSONException e) {
             isValid = false;
         }
         return isValid;

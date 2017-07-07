@@ -49,9 +49,16 @@ class AppSpec extends BaseSpec {
         requestBody << [
                 ''
                 , null
-                , ['name':'bluejay', 'family':'corvidae']
-                , ['name':'bluejay', 'invalid_field':'value']
-                , ['name':'bluejay', 'family':'corvidae', 'continents':['asia', 'europe'], 'visible':'true']
+                , ['name':'bluejay', 'family':'corvidae'] //missing field
+                , ['name':'bluejay', 'invalid_field':'value'] //invalid field
+                , ['name':'bluejay', 'family':'corvidae', 'continents':['asia', 'europe'], 'visible':'true'] //visible as string
+                ,"{\n" +
+                        "\t\"name\": \"bluejay\",\n" +
+                        "\t\"family\": \"Corvidae\",\n" +
+                        "\t\"continents\": [\"asia\", \"europe\"\n" +
+                        "}"
+                , ['name':'bluejay', 'family':'corvidae', 'continents':['asia', 'asia']] //duplicate continents
+                , ['name':'bluejay', 'family':'corvidae', 'continents':[]] //empty continents
         ]
     }
 
@@ -169,6 +176,20 @@ class AppSpec extends BaseSpec {
         restClient.delete( path: Path.Route.BIRDS + "/" + id)
 
         when: "sending get request for a deleted id"
+        def response = restClient.get( path: Path.Route.BIRDS + "/" + id)
+
+        then: "request is not honored, expect 404"
+        response == 404
+    }
+
+    def "delete request for a deleted bird"() {
+        setup: "add a bird first"
+        def postReqBody = ['name':'bluejay', 'family':'corvidae', 'continents':['asia', 'europe']]
+        def postResp = restClient.post(path: Path.Route.BIRDS, body: postReqBody, requestContentType: 'application/json')
+        def id = postResp.data.id
+        restClient.delete( path: Path.Route.BIRDS + "/" + id)
+
+        when: "sending deleted request for a deleted id"
         def response = restClient.get( path: Path.Route.BIRDS + "/" + id)
 
         then: "request is not honored, expect 404"
