@@ -25,27 +25,28 @@ Implement a simple rest service for **posting/deleting/getting** birds as per th
 * In specs, **Fongo** is used instead of **Mongo** so as to keep the specs/tests self-contained. This would be helpful if the project was to go through a CI pipeline which may not have access to **MongoDB**.
 * The application has two modules through which it can run, **TestModule** and **ProductionModule**. Based on the environment, appropriate module is used to launch the application.
 
-### How To
-
-#### Requirements
+### Requirements
 * **Java 8**
 * **Maven**
 
-#### How to Test?
+### How To
+
+##### Run Tests?
 ```
 mvn clean test
 ```
 
-#### How to Package?
+##### Build JAR?
 ```
 mvn clean install
 ``` 
  
-#### How to Run?
+##### Run Application?
+Make sure Mongodb is running and listening on port **27017**.
 ```
 java -cp birds-1.0.jar com.saltside.birds.App
 ```   
-Default listening port is **8080** and default Mongodb port is **27017**.  
+Default listening port is **8080**.  
 
 Once the application is running go to
 ```
@@ -53,7 +54,7 @@ http://localhost:8080/birds
 ```  
 to test the application.
 
-#### Miscellaneous
+### Miscellaneous
 The application uses **Properties** files in resources folder for configuration details like *port*, *db name*, etc. So, if you want it to run with some different configuration(s), go ahead and update the **Properties** files.   
 
 
