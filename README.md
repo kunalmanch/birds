@@ -44,12 +44,17 @@ mvn clean install
 #### How to Run?
 ```
 java -cp birds-1.0.jar com.saltside.birds.App
+```   
+Default listening port is **8080** and default Mongodb port is **27017**.  
+
+Once the application is running go to
+```
+http://localhost:8080/birds
 ```  
+to test the application.
 
 #### Miscellaneous
 The application uses **Properties** files in resources folder for configuration details like *port*, *db name*, etc. So, if you want it to run with some different configuration(s), go ahead and update the **Properties** files.   
-
-Default listening port is **8080** and Default Mongodb port is **27017**.
 
 
 ### Future
